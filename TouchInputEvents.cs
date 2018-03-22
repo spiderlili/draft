@@ -1,3 +1,5 @@
+//receive accurate multitouch inputs from the user
+
 using UnityEngine;
 using System.Collections;
 
