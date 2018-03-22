@@ -1,5 +1,8 @@
-//use the Unity Input class to receive accurate multitouch inputs from the user
-//fingers: touch gestures
+//Touch gestures with fingers - use the Unity Input class to receive accurate multitouch inputs from the user
+//use accelerometer to detect the device orientation and control game objects
+//acceleration information is accessed through a vector3 property as part of the Input class
+//the axes of the accelerometer are set up to match the XYZ axes in Unity 
+//Unity automatically adjusts the accelerometer input to match the device orientation
 
 using UnityEngine;
 using System.Collections;
@@ -34,7 +37,9 @@ public class TouchInputEvents : MonoBehaviour{
             // Get movement of the finger since last frame
             Vector2 touchDeltaPosition = playerTouch(0).deltaPosition;
 
-            // Move object across XY plane
+       //Move object across XY plane based on the accelerometer input vector3
+      //Map the accelerometer's XYZ axis to the game object's XYZ axis
+      //Map the negative of the accelerometer
             transform.Translate(-touchDeltaPosition.x * speed, -touchDeltaPosition.y * speed, 0);
         }
     
