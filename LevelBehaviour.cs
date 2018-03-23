@@ -46,9 +46,10 @@ public class LevelBehaviour : MonoBehaviour {
 	public void retryLevel()
 	{
         //Check if we are running either in the Unity editor or in a standalone build.
-		SceneManager.LoadScene("MindHole"); //reload the main scene
 #if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
         SceneManager.LoadScene("level1Android"); //reload the main scene
+	#else
+		SceneManager.LoadScene("MindHole"); //reload the main scene		
 #endif
     }
 
@@ -95,14 +96,14 @@ public class LevelBehaviour : MonoBehaviour {
 	void Update () {
 	//mobile inputs
 	#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
-		if (Input.GetMouseButtonDown (1) && !rotatingLeft && !rotatingRight) { //left mouse button
+		if (Input.acceleration.x > -0.1f && !rotatingLeft && !rotatingRight) { //left mouse button
 			lockPos = player.transform.position;
 			rotateRemaining = 90;
 			rotatingLeft = true;
 			backgroundCycle ++;
             rotateSE.Play();
         }
-		if (Input.GetMouseButtonDown (0) && !rotatingRight && !rotatingLeft) { //right mouse button
+		if (Input.acceleration.x > 0.1f && !rotatingRight && !rotatingLeft) { //right mouse button
 			lockPos = player.transform.position;
 			rotateRemaining = 90;
 			rotatingRight = true;
