@@ -93,7 +93,8 @@ public class LevelBehaviour : MonoBehaviour {
 		
 
 	void Update () {
-		
+	//mobile inputs
+	#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
 		if (Input.GetMouseButtonDown (1) && !rotatingLeft && !rotatingRight) { //left mouse button
 			lockPos = player.transform.position;
 			rotateRemaining = 90;
@@ -108,6 +109,23 @@ public class LevelBehaviour : MonoBehaviour {
 			backgroundCycle--;
             rotateSE.Play();
         }
+	#else
+  	//web build or desktop build
+		if (Input.GetMouseButtonDown (1) && !rotatingLeft && !rotatingRight) { //left mouse button
+			lockPos = player.transform.position;
+			rotateRemaining = 90;
+			rotatingLeft = true;
+			backgroundCycle ++;
+            rotateSE.Play();
+        }
+		if (Input.GetMouseButtonDown (0) && !rotatingRight && !rotatingLeft) { //right mouse button
+			lockPos = player.transform.position;
+			rotateRemaining = 90;
+			rotatingRight = true;
+			backgroundCycle--;
+            rotateSE.Play();
+        }		
+	#endif	
 		if (twistHit) { //if the twister is hit
 			lockPos = player.transform.position;
 			rotateRemaining = 180;
