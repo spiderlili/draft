@@ -38,6 +38,7 @@ public class HT_GameController : MonoBehaviour {
 
 	//consistent update for timer
 	void FixedUpdate () {
+		//only start counting the timer once the game is active
 		if (counting) {
 			timeLeft -= Time.deltaTime;
 			if (timeLeft < 0) {
