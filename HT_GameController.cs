@@ -51,6 +51,8 @@ public class HT_GameController : MonoBehaviour {
 	public void StartGame () {
 		splashScreen.SetActive (false);
 		startButton.SetActive (false);
+		
+		//enable control on the hatController when the game starts - initially off
 		hatController.ToggleControl (true);
 
 		//coroutine loop for instantiating falling objects
